@@ -16,11 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import *
+from django.conf.urls import url, include
+from rest_framework import routers
+from .views import UserViewSet
+
+router = routers.DefaultRouter()
+
+router.register(r'users', UserViewSet)
+#router.register(r'accounts', AccountViewSet)
+
 
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path("index/",index, name="home")
+    url(r'^', include(router.urls)),
+	path("index/",index, name="home")
+
+]
+
 
     # 6 GET REQUESTS
     # path("api/project",index, name="home")
@@ -48,4 +60,3 @@ urlpatterns = [
     # path("api/projects/<projectId>",index, name="home")
 
    
-]
