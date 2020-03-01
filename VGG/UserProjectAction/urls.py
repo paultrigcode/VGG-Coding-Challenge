@@ -19,17 +19,18 @@ from .views import *
 from django.conf.urls import url, include
 from rest_framework import routers
 from .views import UserViewSet
+from .api import router
 
-router = routers.DefaultRouter()
 
-router.register(r'users', UserViewSet)
+
 #router.register(r'accounts', AccountViewSet)
 
 
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
-	path("index/",index, name="home")
+    #url(r'^', include(router.urls)),
+	path("index/",index, name="home"),
+	path('api/v1/', include(router.urls)),
 
 ]
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import UserProfile
+from .models import UserProfile,Project,Action
 from django.contrib.auth.models import User
 
 
@@ -45,3 +45,17 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     #     # profile.save()
 
     #     return instance
+
+
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ('id', 'name','description','completed')
+
+class ActionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Action
+        fields = ('project_id','description', 'notes')
+
